@@ -26,22 +26,28 @@ public class Player : MonoBehaviour
         
         transform.position += Vector3.right * movementSpeed * Time.deltaTime;
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKeyDown(KeyCode.DownArrow))
         {
             if (!isGrounded)
             {
-                rb.gravityScale += 2;
+                rb.gravityScale += 5.1f;
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (jumpCount > 0)
             {
+                if (!getAttacking())
+                    setJumping(true);
                 rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.AddForce(Vector3.up * jumpSpeed);
                 isGrounded = false;
                 jumpCount--;
             }
+        }
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            setAttacking(1);
         }
 
         //gets floor by accesssing parent and getting last childs gameobject
@@ -51,9 +57,26 @@ public class Player : MonoBehaviour
         camera.transform.position = new Vector3(transform.position.x, 0.5f, -10f);
     }
 
+    public void setAttacking(float value)
+    {
+        bool value2 = value > 0;
+        GetComponent<Animator>().SetBool("attacking", value2);
+    }
+
+    public bool getAttacking()
+    {
+        return GetComponent<Animator>().GetBool("attacking");
+    }
+
+    public void setJumping(bool value)
+    {
+        GetComponent<Animator>().SetBool("jumping", value);
+    }
+
     private void OnCollisionEnter2D(Collision2D col)
     {
         isGrounded = true;
         jumpCount = 2;
+        setJumping(false);
     }
 }
