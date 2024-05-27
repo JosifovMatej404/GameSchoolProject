@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
             rb.gravityScale = 2.1f;
         }
         
-        transform.position += Vector3.right * movementSpeed * Time.deltaTime;
+        transform.position += Vector3.right * movementSpeed * Time.deltaTime;   
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -51,10 +51,9 @@ public class Player : MonoBehaviour
         }
 
         //gets floor by accesssing parent and getting last childs gameobject
-        GameObject floor = transform.parent.GetChild(transform.parent.GetComponent<Transform>().childCount - 1).gameObject;
-        floor.GetComponent<Transform>().position = new Vector2(transform.position.x, -1f);
+        //Vector3Int currentCell = GetComponentInChildren<>.WorldToCell(transform.position);
         GameObject camera = transform.parent.transform.GetChild(0).gameObject;
-        camera.transform.position = new Vector3(transform.position.x, 0.5f, -10f);
+        camera.transform.position = new Vector3(transform.position.x + 2, 0.5f, -10f);
     }
 
     public void setAttacking(float value)
