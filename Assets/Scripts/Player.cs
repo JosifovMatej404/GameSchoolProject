@@ -50,8 +50,6 @@ public class Player : MonoBehaviour
             setAttacking(1);
         }
 
-        //gets floor by accesssing parent and getting last childs gameobject
-        //Vector3Int currentCell = GetComponentInChildren<>.WorldToCell(transform.position);
         GameObject camera = transform.parent.transform.GetChild(0).gameObject;
         camera.transform.position = new Vector3(transform.position.x + 2, 0.5f, -10f);
     }

@@ -7,16 +7,14 @@ public class BuildMap : MonoBehaviour
     public Tile grassTile;
     public Tile dirtTile;
     public Tilemap highlightMap;
-    private int max_per_iteration = 20;
+    private int max_per_iteration = 35;
     private Vector3Int previous;
 
     // do late so that the player has a chance to move in update if necessary
     private void LateUpdate()
     {
         // get current grid location
-        Vector3Int currentCell = highlightMap.WorldToCell(new Vector2(transform.position.x, -1f));
-        // add one in a direction (you'll have to change this to match your directional control)
-        currentCell.x += 1;
+        Vector3Int currentCell = highlightMap.WorldToCell(new Vector2(transform.position.x - 2f, -1f));
 
         // if the position has changed
         if (currentCell != previous)
@@ -24,6 +22,11 @@ public class BuildMap : MonoBehaviour
             // set the new tile
             for (int i = 0; i < max_per_iteration; i++)
             {
+                if (highlightMap.GetTile(currentCell) != null)
+                {
+                    currentCell.x++;
+                    continue;
+                }
                 highlightMap.SetTile(currentCell, grassTile);
                 highlightMap.SetTile(currentCell + new Vector3Int(0, -1), dirtTile);
                 highlightMap.SetTile(currentCell + new Vector3Int(0, -2), dirtTile);
@@ -32,9 +35,14 @@ public class BuildMap : MonoBehaviour
             // save the new position for next frame
             previous = currentCell;
         }
-        Vector3Int passedCell = highlightMap.WorldToCell(new Vector2(transform.position.x - 10f, -1f));
+        Vector3Int passedCell = highlightMap.WorldToCell(new Vector2(transform.position.x - max_per_iteration/2, -1f));
         for (int i = 0; i < max_per_iteration; i++)
         {
+            if (highlightMap.GetTile(passedCell) == null)
+            {
+                passedCell.x++;
+                continue;
+            }
             highlightMap.SetTile(passedCell, null);
             highlightMap.SetTile(passedCell + new Vector3Int(0, -1), null);
             highlightMap.SetTile(passedCell + new Vector3Int(0, -2), null);
