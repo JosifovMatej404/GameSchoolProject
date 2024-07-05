@@ -8,6 +8,8 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] GameObject enemyPrefab;
     [SerializeField] GameObject player;
     RuntimeAnimatorController [] animators = new RuntimeAnimatorController[3];
+    BaseEnemy[] scripts = new BaseEnemy[3];
+
     float TimerWaitTime = 0f ;
     float TimerMaxWaitTime = 4f;
     float TimerMinWaitTime = 1f;
@@ -27,7 +29,6 @@ public class EnemySpawner : MonoBehaviour
         instance.GetComponent<Enemy>().player = player;
         instance.GetComponent<Animator>().runtimeAnimatorController = animators[Random.Range(0,animators.Length)];
         instance.transform.position = player.transform.position + new Vector3(10,0,0);
-        
     }
 
     private RuntimeAnimatorController[] getEnemyAnimators(){
