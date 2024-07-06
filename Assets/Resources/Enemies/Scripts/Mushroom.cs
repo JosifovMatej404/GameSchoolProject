@@ -8,19 +8,13 @@ public class Mushroom : BaseEnemy
     int jumpCount = 1;
     float jumpSpeed = 70f;
     bool isGrounded = false;
-    Rigidbody2D rb;
-
-    void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (isGrounded && Input.GetKeyDown(KeyCode.UpArrow))
         {
-            if (jumpCount > 0)
+            if (jumpCount > 0 && !GetComponent<Animator>().GetBool("dead"))
             {
                 rb.velocity = new Vector2(rb.velocity.x, 0);
                 rb.AddForce(Vector3.up * jumpSpeed);
@@ -29,17 +23,38 @@ public class Mushroom : BaseEnemy
             }
         }
     }
-    private void OnCollisionEnter2D(Collision2D col)
+    public new void KillEnemy()
     {
-        if (col.gameObject.name.Contains("Player"))
+        rb.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+        GetComponent<Animator>().SetBool("dead", true);
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.name.Contains("Player"))
         {
-            KillEnemy();
+            transform.parent.GetComponent<HealthManager>().PlayerTakeDamage();
+            rb.gameObject.GetComponent<BoxCollider2D>().enabled = false;
+            rb.gravityScale = 0f;
         }
         else
         {
             isGrounded = true;
+            rb.gravityScale = 2.1f;
             jumpCount = 1;
+        }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        print(collision.gameObject.name);
 
+        if (collision.gameObject.name.Contains("fireball"))
+        {
+            KillEnemy();
+        }
+        if (collision.gameObject.name.Contains("Hitbox"))
+        {
+            KillEnemy();
         }
     }
 }

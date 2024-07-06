@@ -9,22 +9,28 @@ public class Player : MonoBehaviour
     bool isGrounded = true;
     int jumpCount = 2;
 
+    GameObject hitbox;
+
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        hitbox = transform.Find("Hitbox").gameObject;
     }
 
     void Update()
     {
+        if (getAttacking())
+            hitbox.SetActive(true);
+        else
+            hitbox.SetActive(false);
+
 
         if (isGrounded)
-        {
             rb.gravityScale = 2.1f;
-        }
-        
-        transform.position += Vector3.right * movementSpeed * Time.deltaTime;   
+
+        transform.position += Vector3.right * movementSpeed * Time.deltaTime;
 
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -45,10 +51,9 @@ public class Player : MonoBehaviour
                 jumpCount--;
             }
         }
-        if(Input.GetKeyDown(KeyCode.Space))
-        {
+
+        if (Input.GetKeyDown(KeyCode.Space))
             setAttacking(1);
-        }
 
         GameObject camera = transform.parent.transform.GetChild(0).gameObject;
         camera.transform.position = new Vector3(transform.position.x + 2, 0.5f, -10f);
