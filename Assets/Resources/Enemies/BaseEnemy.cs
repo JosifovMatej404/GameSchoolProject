@@ -29,7 +29,7 @@ public class BaseEnemy : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.name.Contains("Player"))
+        if (collision.gameObject.name.Contains("Player") || collision.gameObject.name.Contains("Fire"))
         {
             KillEnemy();
         }

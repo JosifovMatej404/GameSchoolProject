@@ -97,7 +97,6 @@ GameObject:
   - component: {fileID: 2056427480626167627}
   - component: {fileID: 2056427480626167625}
   - component: {fileID: 2056427480626167624}
-  - component: {fileID: 1782592764}
   - component: {fileID: 1782592770}
   m_Layer: 0
   m_Name: WizzardPlayer
@@ -242,21 +241,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1782592764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2056427480626167630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3787993536652064a8f1351f0c8dad52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grassTile: {fileID: 11400000, guid: ef3a7c0a403001e4db9188602b6747cf, type: 2}
-  dirtTile: {fileID: 11400000, guid: 282c48d5e3ae1024496b52668c8cb853, type: 2}
-  highlightMap: {fileID: 0}
 --- !u!114 &1782592770
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -269,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02b0a1a054723604e9eac6508fc18216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireball: {fileID: 0}
+  fireball: {fileID: 2163273281182826644, guid: bcc5afdcc69d1f14385ddc8260901846, type: 3}
 --- !u!1 &7462988209604444845
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,8 +6,8 @@ public class EnemySpawner : MonoBehaviour
 {
 
     [SerializeField] GameObject enemyPrefab;
-    [SerializeField] GameObject player;
     RuntimeAnimatorController [] animators = new RuntimeAnimatorController[3];
+    GameObject player;
     BaseEnemy[] scripts = new BaseEnemy[3];
 
     float TimerWaitTime = 0f ;
@@ -42,6 +42,10 @@ public class EnemySpawner : MonoBehaviour
         animators = getEnemyAnimators();
         StartCoroutine(timerCoroutine());
         
+    }
+    public void setPlayer(GameObject player)
+    {
+        this.player = player;
     }
 
     // Update is called once per frame

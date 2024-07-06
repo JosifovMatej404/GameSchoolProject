@@ -23,4 +23,9 @@ public class MainMenu : MonoBehaviour
     {
         Application.Quit();
     }
+    public void GoToCharacterSelect()
+    {
+        transform.parent.Find("Title").GetComponent<TMPro.TextMeshProUGUI>().text = "SELECT YOUR HERO";
+    }
 }
+

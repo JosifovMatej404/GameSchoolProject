@@ -2,11 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class CharacterSelect : MonoBehaviour
 {
     public GameObject[] skins;
     public int selectedCharacter;
+
     private void Awake()
     {
         selectedCharacter = PlayerPrefs.GetInt("SelectedCharacter", 0);
@@ -42,5 +45,15 @@ public class CharacterSelect : MonoBehaviour
 
         skins[selectedCharacter].SetActive(true);
         PlayerPrefs.SetInt("SelectedCharacter", selectedCharacter);
+    }
+
+    public void PlayGame()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void OnBackButton()
+    {
+        transform.parent.transform.parent.Find("Title").GetComponent<TMPro.TextMeshProUGUI>().text = "SAMURAI CRACK";
     }
 }
