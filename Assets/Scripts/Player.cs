@@ -11,12 +11,15 @@ public class Player : MonoBehaviour
 
     GameObject hitbox;
 
+    [SerializeField] AudioSource damageClip;
+    [SerializeField] AudioClip [] clips;
     Rigidbody2D rb;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         hitbox = transform.Find("Hitbox").gameObject;
+        damageClip = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -52,8 +55,10 @@ public class Player : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)){
             setAttacking(1);
+            SoundFXManager.instance.PlaySoundEffect(damageClip.clip,transform,1f);
+        }
 
         GameObject camera = transform.parent.transform.GetChild(0).gameObject;
         camera.transform.position = new Vector3(transform.position.x + 2, 0.5f, -10f);

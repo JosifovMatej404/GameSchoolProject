@@ -9,9 +9,12 @@ public class PlayerWizard : MonoBehaviour
     Rigidbody2D rb;
     [SerializeField] GameObject fireball;
 
+    [SerializeField] AudioSource src;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        src = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -21,6 +24,7 @@ public class PlayerWizard : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))
         {
             setAttacking(1);
+            SoundFXManager.instance.PlaySoundEffect(src.clip,transform,1f);
         }
     }
     

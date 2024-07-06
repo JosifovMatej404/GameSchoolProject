@@ -5,6 +5,10 @@ using UnityEngine;
 public class LoadPlayer : MonoBehaviour
 {
     [SerializeField] GameObject[] characters;
+    [SerializeField] private AudioClip  runningAudio;
+
+    // private AudioSource audioSource;
+
     private GameObject selectedCharacter;
 
     private void Awake()
@@ -14,6 +18,10 @@ public class LoadPlayer : MonoBehaviour
 
     private void Start()
     {
+        // audioSource = GetComponent<AudioSource>();
+        // audioSource.clip = runningAudio;
+        // audioSource.Play();
+
         var instance = Instantiate(selectedCharacter, transform);
         instance.transform.SetSiblingIndex(1);
         GetComponent<BuildMap>().setPlayer(instance);
