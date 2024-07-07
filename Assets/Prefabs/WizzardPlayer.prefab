@@ -99,6 +99,7 @@ GameObject:
   - component: {fileID: 2056427480626167624}
   - component: {fileID: 1782592770}
   - component: {fileID: -8269515091339324271}
+  - component: {fileID: 7656769768509730720}
   m_Layer: 0
   m_Name: WizzardPlayer
   m_TagString: Untagged
@@ -255,7 +256,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fireball: {fileID: 2163273281182826644, guid: bcc5afdcc69d1f14385ddc8260901846, type: 3}
-  src: {fileID: 0}
+  manager: {fileID: 0}
+  src: {fileID: -8269515091339324271}
 --- !u!82 &-8269515091339324271
 AudioSource:
   m_ObjectHideFlags: 0
@@ -352,6 +354,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &7656769768509730720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2056427480626167630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e840d2dc3b2345478b9026a742cde6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: -8269515091339324271}
 --- !u!1 &7462988209604444845
 GameObject:
   m_ObjectHideFlags: 0

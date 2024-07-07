@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     GameObject hitbox;
 
+    SoundFXManager soundManager ;
+
     [SerializeField] AudioSource damageClip;
     [SerializeField] AudioClip [] clips;
     Rigidbody2D rb;
@@ -20,6 +22,9 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         hitbox = transform.Find("Hitbox").gameObject;
         damageClip = GetComponent<AudioSource>();
+        soundManager = GetComponent<SoundFXManager>();
+        PlayerPrefs.SetInt("Score",0);
+        PlayerPrefs.Save();
     }
 
     void Update()
@@ -35,13 +40,7 @@ public class Player : MonoBehaviour
 
         transform.position += Vector3.right * movementSpeed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            if (!isGrounded)
-            {
-                rb.gravityScale += 5.1f;
-            }
-        }
+       
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             if (jumpCount > 0)
@@ -57,7 +56,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space)){
             setAttacking(1);
-            SoundFXManager.instance.PlaySoundEffect(damageClip.clip,transform,1f);
+            soundManager.PlaySoundEffect();
         }
 
         GameObject camera = transform.parent.transform.GetChild(0).gameObject;

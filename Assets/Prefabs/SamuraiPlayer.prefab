@@ -73,6 +73,7 @@ GameObject:
   - component: {fileID: 2693169384578628486}
   - component: {fileID: 2693169384578628487}
   - component: {fileID: 2722599034402880593}
+  - component: {fileID: -6602896397581720202}
   m_Layer: 0
   m_Name: SamuraiPlayer
   m_TagString: Untagged
@@ -155,6 +156,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f1784c277794ef4886eda202e2ce31d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageClip: {fileID: 2722599034402880593}
+  clips: []
 --- !u!95 &2693169384578628486
 Animator:
   serializedVersion: 4
@@ -323,3 +326,16 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6602896397581720202
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2693169384578628481}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e840d2dc3b2345478b9026a742cde6a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundFXObject: {fileID: 2722599034402880593}

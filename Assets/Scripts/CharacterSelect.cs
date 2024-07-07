@@ -49,7 +49,7 @@ public class CharacterSelect : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("Scenes/MainLevel");
     }
 
     public void OnBackButton()

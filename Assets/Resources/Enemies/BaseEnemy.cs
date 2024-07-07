@@ -26,6 +26,8 @@ public class BaseEnemy : MonoBehaviour
         rb.gravityScale = 0f;
         rb.gameObject.GetComponent<BoxCollider2D>().enabled = false;
         GetComponent<Animator>().SetBool("dead", true);
+        PlayerPrefs.SetInt("Score",PlayerPrefs.GetInt("Score")+5);
+        PlayerPrefs.Save();
     }
 
     public void DestroyEnemy()
